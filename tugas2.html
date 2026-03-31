@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Toko Fiktif "Berkah Jaya"</title>
+    
+    <!-- Favicon - menggunakan emoji sebagai favicon (alternatif) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏪</text></svg>">
+    
+    <style>
+        /* ===== RESET & UMUM ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 2em;
+            margin: 30px 0 20px;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        /* ===== HEADER dengan BACKGROUND IMAGE ===== */
+        .header-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://3.imimg.com/data3/SR/GR/MY-11441521/mobile-phones-500x500.jpeg');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .header-bg p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        /* ===== IMAGE MAP BANNER ===== */
+        .banner-container {
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .banner-container img {
+            display: block;
+            width: 100%;
+        }
+        
+        /* ===== TABEL STYLING ===== */
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+        
+        /* Border tabel */
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 10px;
+            text-align: left;
+            vertical-align: middle;
+        }
+        
+        /* Header tabel */
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+        
+        /* Striped rows - baris genap */
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        /* Hover effect */
+        tbody tr:hover {
+            background-color: #fff3cd !important;
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Styling khusus untuk sel kategori */
+        td[rowspan] {
+            background-color: #e8f4f8;
+            font-weight: bold;
+            vertical-align: middle;
+            text-align: center;
+        }
+        
+        /* Rata kanan untuk angka */
+        td:nth-child(4), td:nth-child(5), td:nth-child(6) {
+            text-align: right;
+        }
+        
+        /* Format harga */
+        .price, .total-value {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+        }
+        
+        /* Total baris terakhir */
+        .grand-total {
+            background-color: #2c3e50 !important;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .grand-total td {
+            background-color: #2c3e50;
+            color: white;
+        }
+        
+        /* ===== PICTURE ELEMENT ===== */
+        .promo-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .promo-section picture {
+            display: block;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .promo-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .promo-caption {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            margin-top: 60px;
+            padding: 30px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+        }
+        
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* ===== UTILITY ===== */
+        .text-center {
+            text-align: center;
+        }
+        
+        .badge {
+            background-color: #27ae60;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER dengan BACKGROUND IMAGE -->
+    <div class="header-bg">
+        <h1>🏪 Berkah Jaya Store</h1>
+        <p>Dashboard Admin - Inventory Management System</p>
+        <p style="margin-top: 20px;"><span class="badge">Online</span> Last updated: 7 Maret 2026</p>
+    </div>
+
+    <!-- IMAGE MAP NAVIGATION -->
+    <div class="banner-container">
+        <img src="images/image_da2c7622 (1).png" alt="Banner Navigasi Toko" usemap="#shopmap">
+        <map name="shopmap">
+            <!-- Area Home - mengarah ke header -->
+            <area shape="rect" coords="50,50,200,150" href="#home" alt="Home" title="Kembali ke atas">
+            
+            <!-- Area Produk - mengarah ke tabel produk -->
+            <area shape="rect" coords="261,0,511,209" href="#produk" alt="Produk" title="Lihat daftar produk">
+            
+            <!-- Area Kontak - mengarah ke footer -->
+            <area shape="rect" coords="512,0,770,209" href="#kontak" alt="Kontak" title="Hubungi kami">
+            
+            <!-- Area Lingkaran (bonus) - untuk promo -->
+            <area shape="circle" coords="762,0,1024,209" href="#promo" alt="Promo" title="Lihat promo spesial">
+        </map>
+        <p style="text-align: center; margin-top: 5px; color: #666;">
+            <small>Klik area: Kiri (Home) | Tengah (Produk) | Kanan (Kontak) | Lingkaran (Promo)</small>
+        </p>
+    </div>
+
+    <!-- ANCHOR UNTUK NAVIGASI -->
+    <div id="Produk"></div>
+
+    <!-- SECTION TABEL PRODUK -->
+    <h2 id="produk">📋 Data Inventory Produk</h2>
+    
+    <div class="table-container">
+        <table>
+            <!-- COLGROUP - styling kolom harga dan total -->
+            <colgroup>
+                <col span="3" style="background-color: transparent;"> <!-- 3 kolom pertama normal -->
+                <col style="background-color: #e8f5e9;"> <!-- Kolom Stok -->
+                <col style="background-color: #fff3e0;"> <!-- Kolom Harga -->
+                <col style="background-color: #e1f5fe;"> <!-- Kolom Total Nilai -->
+            </colgroup>
+            
+            <!-- HEADER TABEL -->
+            <thead>
+                <tr>
+                    <th colspan="6" style="text-align: center; background-color: #1a2634; font-size: 1.1em;">
+                        🏷️ LAPORAN INVENTORY TOKO "BERKAH JAYA" - PER 7 MARET 2026
+                    </th>
+                </tr>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Nama Produk</th>
+                    <th>Ukuran</th>
+                    <th>Stok</th>
+                    <th>Harga (Rp)</th>
+                    <th>Total Nilai (Rp)</th>
+                </tr>
+            </thead>
+            
+            <!-- BODY TABEL -->
+            <tbody>
+                <!-- Kategori Elektronik -->
+                <tr>
+                    <td rowspan="2" style="background-color: #bbdefb; font-weight: bold;">📱 ELEKTRONIK</td>
+                    <td rowspan="2">Smartphone X Pro</td>
+                    <td>128 GB</td>
+                    <td>15</td>
+                    <td class="price">3.500.000</td>
+                    <td class="total-value">52.500.000</td>
+                </tr>
+                <tr>
+                    <td>256 GB</td>
+                    <td>8</td>
+                    <td class="price">4.200.000</td>
+                    <td class="total-value">33.600.000</td>
+                </tr>
+                
+                <!-- Kategori Fashion -->
+                <tr>
+                    <td rowspan="3" style="background-color: #c8e6c9; font-weight: bold;">👕 FASHION</td>
+                    <td rowspan="3">Kaos Polos Premium</td>
+                    <td>S</td>
+                    <td>25</td>
+                    <td class="price">79.000</td>
+                    <td class="total-value">1.975.000</td>
+                </tr>
+                <tr>
+                    <td>M</td>
+                    <td>30</td>
+                    <td class="price">79.000</td>
+                    <td class="total-value">2.370.000</td>
+                </tr>
+                <tr>
+                    <td>L</td>
+                    <td>20</td>
+                    <td class="price">79.000</td>
+                    <td class="total-value">1.580.000</td>
+                </tr>
+                
+                <!-- Kategori Makanan -->
+                <tr>
+                    <td rowspan="2" style="background-color: #ffe0b2; font-weight: bold;">☕ MAKANAN</td>
+                    <td rowspan="2">Kopi Arabica Gayo</td>
+                    <td>200 gr</td>
+                    <td>50</td>
+                    <td class="price">45.000</td>
+                    <td class="total-value">2.250.000</td>
+                </tr>
+                <tr>
+                    <td>500 gr</td>
+                    <td>35</td>
+                    <td class="price">95.000</td>
+                    <td class="total-value">3.325.000</td>
+                </tr>
+                
+                <!-- Baris Subtotal per Kategori (menggunakan colspan) -->
+                <tr style="background-color: #f5f5f5;">
+                    <td colspan="3" style="text-align: right; font-weight: bold;">Subtotal Elektronik:</td>
+                    <td>23</td>
+                    <td></td>
+                    <td style="font-weight: bold;">86.100.000</td>
+                </tr>
+                <tr style="background-color: #f5f5f5;">
+                    <td colspan="3" style="text-align: right; font-weight: bold;">Subtotal Fashion:</td>
+                    <td>75</td>
+                    <td></td>
+                    <td style="font-weight: bold;">5.925.000</td>
+                </tr>
+                <tr style="background-color: #f5f5f5;">
+                    <td colspan="3" style="text-align: right; font-weight: bold;">Subtotal Makanan:</td>
+                    <td>85</td>
+                    <td></td>
+                    <td style="font-weight: bold;">5.575.000</td>
+                </tr>
+                
+                <!-- GRAND TOTAL dengan colspan -->
+                <tr class="grand-total">
+                    <td colspan="3" style="text-align: right; font-size: 1.1em;">📊 GRAND TOTAL:</td>
+                    <td style="font-size: 1.1em;">183</td>
+                    <td></td>
+                    <td style="font-size: 1.1em;">97.600.000</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Catatan tabel -->
+        <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
+            <sup>📌</sup> Nilai total = Stok × Harga. Semua harga dalam Rupiah (Rp).
+        </p>
+    </div>
+
+   <h2 id="promo">🎉 Promo Spesial Ramadhan 2026</h2>
+
+   <div class="promo-section">
+        <picture>
+            <source media="(max-width: 600px)" srcset="images/image_a35e2c54.png">
+            <source media="(min-width: 900px)" srcset="images/image_a7b0e688.png">
+            <img src="images/image_99c08d40.png" alt="Promo Ramadhan Berkah Jaya">
+        </picture>
+        <p class="promo-caption">Nikmati diskon hingga 50% untuk produk pilihan selama bulan Ramadhan!</p>
+        <p><small>*Gambar berubah seusai ukurang layar anda (responsif)</small></p>
+        </div>
+    </div>
+    <footer id="kontak">
+    <h3 style="color: #ffd700; margin: 20px;">📞 Hubungi Kami</h3>
+
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
+        <div>
+            <p><strong>Alamat:</strong></p>
+            <p>Jl. Raya Bogor No. 123, Jakarta</p>
+        </div>
+        <div>
+            <p><strong>Email:</strong></p>
+            <p>📧 admin@berkahjaya.com<br>
+                   📞 (021) 555-0123<br>
+                   📱 +62 812-3456-7890
+            </p>
+        </div>
+        <div style="text-align: left;">
+                <h4 style="color: #ffd700;">🕒 Jam Operasional</h4>
+                <p>Senin - Jumat: 08.00 - 20.00<br>
+                   Sabtu: 09.00 - 17.00<br>
+                   Minggu: Tutup</p>
+                   
+    
+     <div style="margin: 20px 0;">
+            <a href="#" target="_blank" style="margin: 0 10px;">Facebook</a> |
+            <a href="#" target="_blank" style="margin: 0 10px;">Twitter</a> |
+            <a href="#" target="_blank" style="margin: 0 10px;">Instagram</a> |
+            <a href="#" target="_blank" style="margin: 0 10px;">TikTok</a>
+        </div>
+
+<hr style="border: 1px solid #ffd700; margin: 20px 0;">
+<p>&copy; 2023 Toko Berkah Jaya. All rights reserved.</p>
+<p style="margin-top: 10px; font-size: 0.9em; color: #666;">Alamat: Jl. Raya Bogor No. 123, Jakarta</p>
+<span title="Dibuat dengan HTML untuk tugas web development">Dibuat dengan ❤️ menggunakan HTML murni</span>
+        </footer>
+
+        
+        <div style="margin-top: 20px; padding: 15px; background-color: #e7f3ff; border-radius: 5px; font-size: 0.9em;"></div>
+        <p><strong>📌 Fitur yang digunakan dalam halaman ini</strong></p>
+        <ul style="margin-left: 20px;">
+           <li>✅ Favicon (menggunakan emoji)</li>
+           <li>✅ Page Title</li>
+           <li>✅ Background Images di header</li>
+           <li>✅ Image Map dengan 4 area klik</li>
+           <li>✅ Tabel Kompleks dengan colspan,rospawn,thead</li>
+           <li>✅ Table borders,padding,spacing </li>
+           <li>✅ Table headers dengan styling</li>
+           <li>✅ Colgrup untuk pewarnaan kolom</li>
+            <li>✅ Striped rows dan hover effect</li>
+              <li>✅ the picture Element (responsif)</li>
+              <li>✅ Anchor links (bookmark)</li>
+
+        </ul>
+    </div>
+</body>
+</html>
